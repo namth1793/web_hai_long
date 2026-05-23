@@ -47,13 +47,13 @@ export default function LienHe() {
       <div className="bg-gradient-to-r from-primary to-navy py-14">
         <div className="max-w-7xl mx-auto px-4">
           <Breadcrumb items={[{ label: 'Liên Hệ' }]} />
-          <h1 className="text-3xl md:text-4xl font-black text-white mt-4">Liên Hệ Với Chúng Tôi</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mt-3">Liên Hệ Với Chúng Tôi</h1>
           <p className="text-blue-200 mt-2">Chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7</p>
         </div>
       </div>
 
       {/* Contact Info + Form */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-10 md:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
             {/* Contact Info */}
@@ -222,7 +222,7 @@ export default function LienHe() {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-10 md:py-16 bg-gray-50">
         <div className="max-w-3xl mx-auto px-4">
           <h3 className="text-2xl font-black text-primary text-center mb-10">Câu Hỏi Thường Gặp</h3>
           <div className="space-y-4">

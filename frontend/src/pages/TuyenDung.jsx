@@ -180,13 +180,13 @@ export default function TuyenDung() {
       <div className="bg-gradient-to-r from-primary to-navy py-14">
         <div className="max-w-7xl mx-auto px-4">
           <Breadcrumb items={[{ label: 'Tuyển Dụng' }]} />
-          <h1 className="text-3xl md:text-4xl font-black text-white mt-4">Cơ Hội Việc Làm</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mt-3">Cơ Hội Việc Làm</h1>
           <p className="text-blue-200 mt-2">Gia nhập đội ngũ chuyên gia logistics của Hoàng Khang</p>
         </div>
       </div>
 
       {/* Why Work With Us */}
-      <section className="py-14 bg-white border-b border-gray-100">
+      <section className="py-9 md:py-14 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-10">
             <h2 className="text-2xl font-black text-primary mb-2">Tại Sao Làm Việc Tại Hoàng Khang?</h2>
@@ -210,7 +210,7 @@ export default function TuyenDung() {
       </section>
 
       {/* Jobs List */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-10 md:py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
             <div>

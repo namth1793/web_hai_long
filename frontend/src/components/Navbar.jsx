@@ -11,7 +11,7 @@ const MENU = [
     children: [
       { label: 'Hàng Nhập Khẩu', path: '/san-pham?tab=nhap' },
       { label: 'Hàng Xuất Khẩu', path: '/san-pham?tab=xuat' },
-    ]
+    ],
   },
   {
     label: 'Dịch Vụ', path: '/dich-vu',
@@ -19,7 +19,7 @@ const MENU = [
       { label: 'Vận Tải Quốc Tế', path: '/dich-vu#van-tai' },
       { label: 'Ủy Thác Xuất Nhập Khẩu', path: '/dich-vu#uy-thac' },
       { label: 'Thủ Tục Hải Quan', path: '/dich-vu#hai-quan' },
-    ]
+    ],
   },
   { label: 'Tin Tức', path: '/tin-tuc' },
   { label: 'Tuyển Dụng', path: '/tuyen-dung' },
@@ -27,35 +27,42 @@ const MENU = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
-  const [mobileExpanded, setMobileExpanded] = useState(null);
-  const location = useLocation();
-  const timerRef = useRef(null);
+  const [scrolled, setScrolled]       = useState(false);
+  const [mobileOpen, setMobileOpen]   = useState(false);
+  const [activeDD, setActiveDD]       = useState(null);
+  const [mobileExp, setMobileExp]     = useState(null);
+  const location  = useLocation();
+  const timerRef  = useRef(null);
 
+  /* scroll shadow */
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  /* close on route change */
   useEffect(() => {
     setMobileOpen(false);
-    setActiveDropdown(null);
+    setActiveDD(null);
   }, [location]);
 
-  const handleMouseEnter = (label) => {
-    clearTimeout(timerRef.current);
-    setActiveDropdown(label);
-  };
-  const handleMouseLeave = () => {
-    timerRef.current = setTimeout(() => setActiveDropdown(null), 150);
-  };
+  /* body scroll lock */
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+    return () => document.body.classList.remove('menu-open');
+  }, [mobileOpen]);
+
+  const openDD  = (lbl) => { clearTimeout(timerRef.current); setActiveDD(lbl); };
+  const closeDD = ()    => { timerRef.current = setTimeout(() => setActiveDD(null), 150); };
 
   return (
     <>
-      {/* Top bar */}
+      {/* ── Top bar (desktop only) ── */}
       <div className="bg-navy text-white text-sm py-2 hidden md:block">
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center gap-6">
@@ -76,50 +83,48 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main Navbar */}
+      {/* ── Main header ── */}
       <header className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-lg' : 'bg-white shadow-sm'}`}>
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between h-16 md:h-20">
+          <div className="flex items-center justify-between h-14 md:h-20">
+
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-primary rounded-lg flex items-center justify-center text-white font-black text-lg leading-none">
+            <Link to="/" className="flex items-center gap-2.5 shrink-0">
+              <div className="w-9 h-9 md:w-12 md:h-12 bg-primary rounded-lg flex items-center justify-center text-white font-black text-sm md:text-lg leading-none">
                 HK
               </div>
               <div>
-                <div className="text-primary font-black text-lg md:text-xl leading-tight">HOÀNG KHANG</div>
-                <div className="text-accent text-xs md:text-sm font-medium tracking-wide">XNK & LOGISTICS</div>
+                <div className="text-primary font-black text-base md:text-xl leading-tight">HOÀNG KHANG</div>
+                <div className="text-accent text-[10px] md:text-sm font-medium tracking-wide">XNK & LOGISTICS</div>
               </div>
             </Link>
 
-            {/* Desktop Menu */}
-            <nav className="hidden lg:flex items-center gap-1">
+            {/* Desktop nav */}
+            <nav className="hidden lg:flex items-center gap-0.5">
               {MENU.map((item) => (
                 <div
                   key={item.label}
                   className="relative"
-                  onMouseEnter={() => item.children && handleMouseEnter(item.label)}
-                  onMouseLeave={handleMouseLeave}
+                  onMouseEnter={() => item.children && openDD(item.label)}
+                  onMouseLeave={closeDD}
                 >
                   <Link
                     to={item.path}
                     className={`flex items-center gap-1 px-3 py-2 rounded text-sm font-semibold transition-colors ${
-                      location.pathname === item.path
-                        ? 'text-accent'
-                        : 'text-gray-700 hover:text-accent'
+                      location.pathname === item.path ? 'text-accent' : 'text-gray-700 hover:text-accent'
                     }`}
                   >
                     {item.label}
-                    {item.children && <FiChevronDown size={14} className={`transition-transform ${activeDropdown === item.label ? 'rotate-180' : ''}`} />}
+                    {item.children && (
+                      <FiChevronDown size={13} className={`transition-transform duration-200 ${activeDD === item.label ? 'rotate-180' : ''}`} />
+                    )}
                   </Link>
-                  {item.children && activeDropdown === item.label && (
-                    <div className="dropdown-menu absolute top-full left-0 bg-white shadow-xl rounded-lg py-2 min-w-[220px] border border-gray-100">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.label}
-                          to={child.path}
-                          className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors"
-                        >
-                          {child.label}
+                  {item.children && activeDD === item.label && (
+                    <div className="dropdown-menu absolute top-full left-0 bg-white shadow-xl rounded-xl py-2 min-w-[220px] border border-gray-100 z-50">
+                      {item.children.map((c) => (
+                        <Link key={c.label} to={c.path}
+                          className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                          {c.label}
                         </Link>
                       ))}
                     </div>
@@ -128,60 +133,88 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* CTA Button */}
-            <a href="tel:02466898662" className="hidden lg:flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-5 py-2.5 rounded-lg font-semibold text-sm transition-colors">
-              <FiPhone size={15} />
-              <span>Tư Vấn Ngay</span>
+            {/* Desktop CTA */}
+            <a href="tel:02466898662"
+              className="hidden lg:flex items-center gap-2 bg-accent hover:bg-accent-dark text-white px-5 py-2.5 rounded-lg font-semibold text-sm transition-colors shrink-0">
+              <FiPhone size={15} /><span>Tư Vấn Ngay</span>
             </a>
 
-            {/* Mobile Hamburger */}
-            <button
-              className="lg:hidden p-2 text-primary"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-            </button>
+            {/* Mobile right side */}
+            <div className="flex items-center gap-2 lg:hidden">
+              <a href="tel:02466898662"
+                className="flex items-center gap-1.5 bg-accent text-white px-3 py-2 rounded-lg text-xs font-bold">
+                <FiPhone size={13} /><span>Gọi Ngay</span>
+              </a>
+              <button
+                className="p-2 text-primary rounded-lg hover:bg-gray-100 transition-colors"
+                onClick={() => setMobileOpen(!mobileOpen)}
+                aria-label="Toggle menu"
+              >
+                {mobileOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* ── Mobile menu ── */}
         {mobileOpen && (
-          <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg">
-            <div className="px-4 py-3 flex items-center gap-4 bg-navy text-white text-sm">
-              <a href="tel:02466898662" className="flex items-center gap-1"><FiPhone size={13} /><span>024 668 98662</span></a>
-            </div>
+          <div className="mobile-menu-enter lg:hidden bg-white border-t border-gray-100 shadow-xl max-h-[80vh] overflow-y-auto">
             {MENU.map((item) => (
               <div key={item.label} className="border-b border-gray-100 last:border-0">
                 {item.children ? (
                   <>
                     <button
-                      className="w-full flex justify-between items-center px-4 py-3 text-gray-800 font-semibold text-sm"
-                      onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
+                      className="w-full flex justify-between items-center px-5 py-4 text-gray-800 font-semibold text-sm active:bg-gray-50"
+                      onClick={() => setMobileExp(mobileExp === item.label ? null : item.label)}
                     >
                       <span>{item.label}</span>
-                      <FiChevronDown className={`transition-transform ${mobileExpanded === item.label ? 'rotate-180' : ''}`} />
+                      <FiChevronDown size={16} className={`text-gray-400 transition-transform duration-200 ${mobileExp === item.label ? 'rotate-180' : ''}`} />
                     </button>
-                    {mobileExpanded === item.label && (
-                      <div className="bg-gray-50">
-                        {item.children.map((child) => (
-                          <Link key={child.label} to={child.path} className="block px-8 py-2.5 text-sm text-gray-600 hover:text-accent">
-                            {child.label}
+                    {mobileExp === item.label && (
+                      <div className="bg-gray-50 border-t border-gray-100">
+                        {item.children.map((c) => (
+                          <Link key={c.label} to={c.path}
+                            className="flex items-center gap-2 px-8 py-3.5 text-sm text-gray-600 hover:text-accent active:bg-gray-100 transition-colors">
+                            <span className="text-accent text-base leading-none">›</span>{c.label}
                           </Link>
                         ))}
                       </div>
                     )}
                   </>
                 ) : (
-                  <Link to={item.path} className="block px-4 py-3 text-gray-800 font-semibold text-sm hover:text-accent">
+                  <Link to={item.path}
+                    className={`block px-5 py-4 text-sm font-semibold active:bg-gray-50 transition-colors ${
+                      location.pathname === item.path ? 'text-accent' : 'text-gray-800 hover:text-accent'
+                    }`}>
                     {item.label}
                   </Link>
                 )}
               </div>
             ))}
+
+            {/* Mobile menu footer */}
+            <div className="p-4 bg-navy">
+              <a href="tel:02466898662"
+                className="flex items-center justify-center gap-2 w-full bg-accent text-white py-3.5 rounded-xl font-bold text-sm">
+                <FiPhone size={16} /> 024 668 98662 — Gọi Miễn Phí
+              </a>
+              <a href="mailto:info@hoangkhanglogs.com"
+                className="flex items-center justify-center gap-2 w-full mt-2 text-blue-300 text-xs py-2">
+                <FiMail size={12} /> info@hoangkhanglogs.com
+              </a>
+            </div>
           </div>
         )}
       </header>
+
+      {/* ── Floating phone bar (mobile, bottom) ── */}
+      <div className="float-phone">
+        <a href="tel:02466898662"
+          className="flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-full shadow-2xl font-bold text-sm animate-bounce">
+          <FiPhone size={16} className="shrink-0" />
+          <span>024 668 98662</span>
+        </a>
+      </div>
     </>
   );
 }

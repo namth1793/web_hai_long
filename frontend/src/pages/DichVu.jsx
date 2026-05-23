@@ -78,13 +78,13 @@ export default function DichVu() {
       <div className="bg-gradient-to-r from-primary to-navy py-14">
         <div className="max-w-7xl mx-auto px-4">
           <Breadcrumb items={[{ label: 'Dịch Vụ' }]} />
-          <h1 className="text-3xl md:text-4xl font-black text-white mt-4">Dịch Vụ Của Chúng Tôi</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mt-3">Dịch Vụ Của Chúng Tôi</h1>
           <p className="text-blue-200 mt-2">Giải pháp logistics và xuất nhập khẩu toàn diện</p>
         </div>
       </div>
 
       {/* Service 1: Vận Tải */}
-      <section id="van-tai" className="py-20 bg-white scroll-mt-20">
+      <section id="van-tai" className="py-12 md:py-20 bg-white scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-14">
             <div className="text-accent font-semibold text-sm uppercase tracking-wider mb-2">Dịch Vụ 01</div>
@@ -117,7 +117,7 @@ export default function DichVu() {
       </section>
 
       {/* Service 2: Ủy Thác */}
-      <section id="uy-thac" className="py-20 bg-gray-50 scroll-mt-20">
+      <section id="uy-thac" className="py-12 md:py-20 bg-gray-50 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-14">
             <div className="text-accent font-semibold text-sm uppercase tracking-wider mb-2">Dịch Vụ 02</div>
@@ -156,7 +156,7 @@ export default function DichVu() {
       </section>
 
       {/* Service 3: Hải Quan */}
-      <section id="hai-quan" className="py-20 bg-white scroll-mt-20">
+      <section id="hai-quan" className="py-12 md:py-20 bg-white scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -205,7 +205,7 @@ export default function DichVu() {
       </section>
 
       {/* Price Note */}
-      <section className="py-16 bg-gray-50 border-y border-gray-200">
+      <section className="py-10 md:py-16 bg-gray-50 border-y border-gray-200">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div className="bg-white rounded-2xl p-10 shadow-md">
             <FiFileText size={40} className="text-accent mx-auto mb-4" />

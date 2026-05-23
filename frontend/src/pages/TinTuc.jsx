@@ -43,12 +43,12 @@ export default function TinTuc() {
       <div className="bg-gradient-to-r from-primary to-navy py-14">
         <div className="max-w-7xl mx-auto px-4">
           <Breadcrumb items={[{ label: 'Tin Tức' }]} />
-          <h1 className="text-3xl md:text-4xl font-black text-white mt-4">Tin Tức Logistics</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mt-3">Tin Tức Logistics</h1>
           <p className="text-blue-200 mt-2">Cập nhật thông tin mới nhất về ngành xuất nhập khẩu và logistics</p>
         </div>
       </div>
 
-      <section className="py-16 bg-gray-50">
+      <section className="py-10 md:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-10">
             {/* Main Content */}

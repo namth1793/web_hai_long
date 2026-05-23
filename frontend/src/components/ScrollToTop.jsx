@@ -16,9 +16,9 @@ export default function ScrollToTop() {
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       className="scroll-top"
-      aria-label="Scroll to top"
+      aria-label="Lên đầu trang"
     >
-      <FiArrowUp size={20} />
+      <FiArrowUp size={18} />
     </button>
   );
 }

@@ -9,28 +9,35 @@
   body {
     font-family: 'Be Vietnam Pro', sans-serif;
     color: #1a1a1a;
+    overflow-x: hidden;
   }
+  /* Prevent layout shift from scrollbar */
+  * { box-sizing: border-box; }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-accent hover:bg-accent-dark text-white font-semibold px-6 py-3 rounded transition-all duration-200 inline-flex items-center gap-2;
+    @apply bg-accent hover:bg-accent-dark text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 inline-flex items-center justify-center gap-2;
   }
   .btn-outline {
-    @apply border-2 border-white text-white hover:bg-white hover:text-primary font-semibold px-6 py-3 rounded transition-all duration-200 inline-flex items-center gap-2;
+    @apply border-2 border-white text-white hover:bg-white hover:text-primary font-semibold px-6 py-3 rounded-lg transition-all duration-200 inline-flex items-center justify-center gap-2;
   }
   .section-title {
-    @apply text-3xl font-bold text-primary-900 mb-4;
+    @apply text-2xl sm:text-3xl font-bold text-primary-900 mb-4;
   }
   .section-subtitle {
-    @apply text-gray-500 mb-8 max-w-2xl mx-auto text-center;
+    @apply text-gray-500 mb-8 max-w-2xl mx-auto text-center text-sm sm:text-base;
   }
   .card {
     @apply bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300;
   }
+  /* Section spacing — comfortable on mobile, generous on desktop */
+  .section-py {
+    @apply py-12 md:py-20;
+  }
 }
 
-/* Slick Slider Custom */
+/* ── Slick Slider ──────────────────────────────── */
 .slick-dots li button:before {
   color: white !important;
   opacity: 0.5;
@@ -45,43 +52,50 @@
   font-size: 24px;
 }
 
-/* Hero slider */
-.hero-slide {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Dropdown animation */
+/* ── Dropdown ──────────────────────────────────── */
 .dropdown-menu {
-  animation: fadeDown 0.2s ease-out;
+  animation: fadeDown 0.18s ease-out;
 }
 @keyframes fadeDown {
   from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Scroll to top */
+/* ── Mobile menu slide ─────────────────────────── */
+.mobile-menu-enter {
+  animation: slideDown 0.25s ease-out;
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Scroll to top ─────────────────────────────── */
 .scroll-top {
-  @apply fixed bottom-8 right-8 w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer z-50 hover:bg-accent-dark transition-colors;
+  @apply fixed bottom-24 right-4 md:bottom-8 md:right-8 w-11 h-11 bg-accent text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer z-50 hover:bg-accent-dark transition-colors;
 }
 
-/* Custom breadcrumb */
+/* ── Floating phone (mobile only) ─────────────── */
+.float-phone {
+  @apply fixed bottom-4 left-1/2 -translate-x-1/2 z-50 md:hidden;
+}
+
+/* ── News card hover ───────────────────────────── */
+.news-card:hover img { transform: scale(1.05); }
+.news-card img { transition: transform 0.4s ease; }
+
+/* ── Service card hover ────────────────────────── */
+.service-card:hover { transform: translateY(-4px); }
+.service-card { transition: transform 0.3s ease; }
+
+/* ── Breadcrumb ────────────────────────────────── */
 .breadcrumb {
-  @apply flex items-center gap-2 text-sm text-gray-500;
+  @apply flex items-center gap-2 text-sm text-gray-400 flex-wrap;
 }
 
-/* News card */
-.news-card:hover img {
-  transform: scale(1.05);
-}
-.news-card img {
-  transition: transform 0.4s ease;
-}
-
-/* Service card hover */
-.service-card:hover {
-  transform: translateY(-4px);
-}
-.service-card {
-  transition: transform 0.3s ease;
+/* ── Body scroll lock (mobile menu) ───────────── */
+body.menu-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
 }

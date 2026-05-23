@@ -30,13 +30,13 @@ export default function GioiThieu() {
       <div className="bg-gradient-to-r from-primary to-navy py-14">
         <div className="max-w-7xl mx-auto px-4">
           <Breadcrumb items={[{ label: 'Giới Thiệu' }]} />
-          <h1 className="text-3xl md:text-4xl font-black text-white mt-4">Giới Thiệu Về Hoàng Khang</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mt-3">Giới Thiệu Về Hoàng Khang</h1>
           <p className="text-blue-200 mt-2">Công ty Xuất Nhập Khẩu & Logistics hàng đầu tại Hà Nội</p>
         </div>
       </div>
 
       {/* About Section */}
-      <section className="py-20 bg-white">
+      <section className="py-12 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <div>
@@ -74,7 +74,7 @@ export default function GioiThieu() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-14">
             <h2 className="text-3xl font-black text-primary mb-4">Tầm Nhìn & Sứ Mệnh</h2>
@@ -103,7 +103,7 @@ export default function GioiThieu() {
       </section>
 
       {/* Core Values */}
-      <section className="py-20 bg-white">
+      <section className="py-12 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-14">
             <div className="text-accent font-semibold text-sm uppercase tracking-wider mb-2">Giá Trị</div>
@@ -124,7 +124,7 @@ export default function GioiThieu() {
       </section>
 
       {/* Timeline */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 md:py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-14">
             <div className="text-accent font-semibold text-sm uppercase tracking-wider mb-2">Lịch Sử</div>
@@ -151,7 +151,7 @@ export default function GioiThieu() {
       </section>
 
       {/* Team */}
-      <section className="py-20 bg-white">
+      <section className="py-12 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-14">
             <div className="text-accent font-semibold text-sm uppercase tracking-wider mb-2">Đội Ngũ</div>
@@ -176,7 +176,7 @@ export default function GioiThieu() {
       </section>
 
       {/* Memberships */}
-      <section className="py-16 bg-primary">
+      <section className="py-10 md:py-16 bg-primary">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-2xl font-black text-white mb-3">Thành Viên Các Tổ Chức Quốc Tế</h2>
           <p className="text-blue-200 mb-10">Hoàng Khang là thành viên chính thức của các hiệp hội logistics uy tín trên thế giới</p>
