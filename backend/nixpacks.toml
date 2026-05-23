@@ -1,0 +1,4 @@
+# Pin Node 20 — has prebuilt binaries for better-sqlite3 v9
+# Python added as fallback in case native compilation is needed
+[phases.setup]
+nixPkgs = ['nodejs_20', 'python3', 'gnumake', 'gcc']
