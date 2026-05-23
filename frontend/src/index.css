@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color: #1a1a1a;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-accent hover:bg-accent-dark text-white font-semibold px-6 py-3 rounded transition-all duration-200 inline-flex items-center gap-2;
+  }
+  .btn-outline {
+    @apply border-2 border-white text-white hover:bg-white hover:text-primary font-semibold px-6 py-3 rounded transition-all duration-200 inline-flex items-center gap-2;
+  }
+  .section-title {
+    @apply text-3xl font-bold text-primary-900 mb-4;
+  }
+  .section-subtitle {
+    @apply text-gray-500 mb-8 max-w-2xl mx-auto text-center;
+  }
+  .card {
+    @apply bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300;
+  }
+}
+
+/* Slick Slider Custom */
+.slick-dots li button:before {
+  color: white !important;
+  opacity: 0.5;
+  font-size: 10px;
+}
+.slick-dots li.slick-active button:before {
+  opacity: 1;
+  color: #e8941a !important;
+}
+.slick-prev:before, .slick-next:before {
+  color: #e8941a;
+  font-size: 24px;
+}
+
+/* Hero slider */
+.hero-slide {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dropdown animation */
+.dropdown-menu {
+  animation: fadeDown 0.2s ease-out;
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll to top */
+.scroll-top {
+  @apply fixed bottom-8 right-8 w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer z-50 hover:bg-accent-dark transition-colors;
+}
+
+/* Custom breadcrumb */
+.breadcrumb {
+  @apply flex items-center gap-2 text-sm text-gray-500;
+}
+
+/* News card */
+.news-card:hover img {
+  transform: scale(1.05);
+}
+.news-card img {
+  transition: transform 0.4s ease;
+}
+
+/* Service card hover */
+.service-card:hover {
+  transform: translateY(-4px);
+}
+.service-card {
+  transition: transform 0.3s ease;
+}
