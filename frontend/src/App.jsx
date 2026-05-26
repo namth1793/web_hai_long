@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -20,21 +21,23 @@ function ScrollRestorer() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <ScrollRestorer />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/gioi-thieu" element={<GioiThieu />} />
-        <Route path="/san-pham" element={<SanPham />} />
-        <Route path="/dich-vu" element={<DichVu />} />
-        <Route path="/tin-tuc" element={<TinTuc />} />
-        <Route path="/tin-tuc/:slug" element={<TinTucDetail />} />
-        <Route path="/tuyen-dung" element={<TuyenDung />} />
-        <Route path="/lien-he" element={<LienHe />} />
-      </Routes>
-      <Footer />
-      <ScrollToTop />
-    </BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
+        <ScrollRestorer />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/gioi-thieu" element={<GioiThieu />} />
+          <Route path="/san-pham" element={<SanPham />} />
+          <Route path="/dich-vu" element={<DichVu />} />
+          <Route path="/tin-tuc" element={<TinTuc />} />
+          <Route path="/tin-tuc/:slug" element={<TinTucDetail />} />
+          <Route path="/tuyen-dung" element={<TuyenDung />} />
+          <Route path="/lien-he" element={<LienHe />} />
+        </Routes>
+        <Footer />
+        <ScrollToTop />
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }
