@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAdminAuth } from '../../context/AdminAuthContext';
+import { FiArrowLeft } from 'react-icons/fi';
 
 export default function AdminLogin() {
   const { login } = useAdminAuth();
@@ -76,6 +77,13 @@ export default function AdminLogin() {
             {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
           </button>
         </form>
+
+        <button
+          onClick={() => navigate('/')}
+          className="mt-5 w-full flex items-center justify-center gap-1.5 text-sm text-gray-400 hover:text-gray-600 transition"
+        >
+          <FiArrowLeft size={14} /> Quay về trang chủ
+        </button>
       </div>
     </div>
   );
