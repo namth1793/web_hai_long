@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FiPhone, FiMail, FiMapPin, FiClock } from 'react-icons/fi';
 import { FaFacebookF, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
 import { useLanguage } from '../context/LanguageContext';
@@ -6,6 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 export default function Footer() {
   const { t } = useLanguage();
   const f = t.footer;
+  const navigate = useNavigate();
   return (
     <footer className="bg-navy text-white pb-20 md:pb-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-16">
@@ -94,6 +95,13 @@ export default function Footer() {
             <Link to="/lien-he" className="hover:text-accent transition-colors">{f.privacy}</Link>
             <span>|</span>
             <Link to="/lien-he" className="hover:text-accent transition-colors">{f.terms}</Link>
+            <span>|</span>
+            <button
+              onClick={() => navigate('/admin')}
+              className="hover:text-gray-300 transition-colors text-gray-600 text-xs"
+            >
+              admin
+            </button>
           </div>
         </div>
       </div>

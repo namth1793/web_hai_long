@@ -27,6 +27,12 @@ app.use('/api/contacts', require('./routes/contacts'));
 app.use('/api/news', require('./routes/news'));
 app.use('/api/jobs', require('./routes/jobs'));
 
+// Admin routes
+app.use('/api/admin', require('./routes/admin'));
+app.use('/api/admin/news', require('./routes/admin-news'));
+app.use('/api/admin/jobs', require('./routes/admin-jobs'));
+app.use('/api/admin', require('./routes/admin-contacts'));
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Hoang Khang API is running', port: PORT });

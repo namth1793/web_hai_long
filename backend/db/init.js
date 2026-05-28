@@ -8,6 +8,13 @@ if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
 const db = new Database(path.join(dataDir, 'hoangkhang.db'));
 
 db.exec(`
+  CREATE TABLE IF NOT EXISTS admins (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
+
   CREATE TABLE IF NOT EXISTS contacts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     ho_ten TEXT NOT NULL,
@@ -60,6 +67,14 @@ db.exec(`
     FOREIGN KEY (job_id) REFERENCES jobs(id)
   );
 `);
+
+// Seed admin
+const crypto = require('crypto');
+const sha256 = (s) => crypto.createHash('sha256').update(s).digest('hex');
+const adminCount = db.prepare('SELECT COUNT(*) as c FROM admins').get().c;
+if (adminCount === 0) {
+  db.prepare('INSERT INTO admins (username, password_hash) VALUES (?, ?)').run('admin', sha256('admin123'));
+}
 
 // Seed news
 const newsCount = db.prepare('SELECT COUNT(*) as c FROM news').get().c;
